@@ -1,0 +1,18 @@
+# Default conversion settings
+conversion:
+  dpi: 100
+  jpeg_quality: 90
+
+# Sample mode settings
+sample:
+  # The directory where sample files are saved.
+  output_dir: "examples"
+  # Page number to sample (1-based index).
+  # If set to null or not provided, a random page (excluding the first and last) will be selected.
+  page: null
+
+# Batch processing settings
+batch:
+  recursive: false
+  pattern: "*.pdf"
+  skip_existing: false
