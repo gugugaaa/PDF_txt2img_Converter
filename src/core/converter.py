@@ -92,10 +92,16 @@ class PDFConverter:
                 error_message=f"Conversion failed: {e}"
             )
         finally:
-            if 'doc_in' in locals() and doc_in.is_open:
-                doc_in.close()
-            if 'doc_out' in locals() and doc_out.is_open:
-                doc_out.close()
+            if 'doc_in' in locals():
+                try:
+                    doc_in.close()
+                except Exception:
+                    pass
+            if 'doc_out' in locals():
+                try:
+                    doc_out.close()
+                except Exception:
+                    pass
 
     def sample_convert(self, input_path: str, page_num: Optional[int] = None) -> ConversionResult:
         """
@@ -118,7 +124,7 @@ class PDFConverter:
                 error_message=f"Input file not found: {input_path}", is_sample=True
             )
 
-        self._ensure_output_dir(sample_dir)
+        self._ensure_output_dir(str(sample_dir))
 
         try:
             doc_in = fitz.open(input_path)
@@ -174,10 +180,16 @@ class PDFConverter:
                 error_message=f"Sample conversion failed: {e}", is_sample=True
             )
         finally:
-            if 'doc_in' in locals() and doc_in.is_open:
-                doc_in.close()
-            if 'doc_out' in locals() and doc_out.is_open:
-                doc_out.close()
+            if 'doc_in' in locals():
+                try:
+                    doc_in.close()
+                except Exception:
+                    pass
+            if 'doc_out' in locals():
+                try:
+                    doc_out.close()
+                except Exception:
+                    pass
 
     def _convert_page(self, page_in, doc_out, page_num: int, total_pages: int, show_progress: bool = True):
         """Converts a single page to an image and adds it to the output document."""

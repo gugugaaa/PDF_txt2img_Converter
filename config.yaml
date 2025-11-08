@@ -1,6 +1,6 @@
 # Default conversion settings
 conversion:
-  dpi: 100
+  dpi: 110
   jpeg_quality: 90
 
 # Sample mode settings
